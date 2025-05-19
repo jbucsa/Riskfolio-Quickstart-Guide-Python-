@@ -21,15 +21,6 @@ else:
 
 assets = ["BTC-USD","ETH-USD", "LTC-USD"]
 
-# Download data with proper settings
-# try:
-#     data = yf.download(tickers=assets, start=start, end=end, group_by='ticker', auto_adjust=True)
-#     # Extract the 'Close' prices for each ticker
-#     prices = data.xs('Close', axis=1, level=1)
-# except Exception as e:
-#     print("Download failed:", e)
-#     prices = pd.DataFrame()
-
 data = yf.download(assets, start=start, end=end, auto_adjust=False)
 
 
