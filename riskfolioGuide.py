@@ -45,3 +45,26 @@ w = port.optimization(model=model, rm=rm, obj=obj, rf=rf, l=l, hist=hist )
 # Plotting Optimization
 ax = rp.plot_pie(w=w, title="Optimum Portfolio", others=0.05, cmap='tab20')
 plt.show
+
+# Plotting Efficient Frontier Mean - Standard Deviation (MV)
+frontier = port.efficient_frontier(model=model, rm=rm, points=50, rf=rf, hist=hist)
+ax = rp.plot_frontier(w_frontier=frontier, mu=port.mu, cov=port.cov, returns=returns, rm=rm, rf=rf, cmap='viridis', w=w)
+plt.show()
+
+# Just showing what the 'frontier' dataframe looks like
+frontier
+
+
+ax= rp.plot_frontier_area(w_frontier=frontier, cmap='tab20')
+plt.show()
+
+ax = rp.plot_pie(w=frontier[23], title="Optimum Portfolio", others=0.05, cmap='tab20')
+plt.show
+
+# Jupyter Report feature
+# Note, need to change the 't_factor=365' and 'days_per_year=365' since crypto is traded 365 days a year.
+ax = rp.jupyter_report(returns, w, rm=rm, t_factor=365, days_per_year=365)
+plt.show()
+
+ax = rp.jupyter_report(returns, frontier[23], rm=rm, t_factor=365, days_per_year=365)
+plt.show()
